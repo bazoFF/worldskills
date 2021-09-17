@@ -1,39 +1,23 @@
-//
-// helloWorld();
-//
-//
-// function helloWorld() {
-//     console.log(inputEl.value);
-// }
+const btnEl = document.getElementById('container-button');
+const resultEl = document.getElementById('container-par');
+const inputEl = document.getElementById('input-value');
 
-const btn = document.getElementById('container-button')
-const p = document.getElementById('container-par')
+function square(inputValue) {
+    const values = inputValue.split(' ');
+    const oddValues = values.filter(value => value % 2 === 1);
 
-function square (arr) {
-    let result;
-    let newArr = arr.split(' ')
-
-    result = newArr.filter(function (elm) {
-        return elm%2 === 1
-    })
-    if (result.length === 0) {
-        return "В массиве нет нечетных элементов"
-    }
-    result = result.map(function (elm) {
-        return Math.pow(elm, 2)
-    }).map(i=>x+=i, x=0)                 // Разобрать, спросить, узнать
-        .reverse()[0]
-
-    if (result === undefined) {
-        return "Неправильный ввод данных"
+    if (oddValues.length === 0) {
+        return 'В массиве нет нечетных элементов';
     }
 
-    return result;
+    const squares = oddValues.map(value => Math.pow(value, 2));
+    const result = squares.reduce((result, valueSquare) => result + valueSquare, 0);
+
+    return result === undefined ? 'Неправильный ввод данных' : result;
 }
 
-btn.onclick = function () {
-    let val = document.getElementById('input-value').value
-    p.innerHTML = square(val)
-    val.innerHTML = " "
-}
+btnEl.addEventListener('click', function () {
+    resultEl.innerHTML = square(inputEl.value);
+    inputEl.value = null;
+});
 

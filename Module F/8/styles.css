@@ -32,12 +32,11 @@ html, body, .container {
     min-height: max-content;
     padding: 100px;
     border-radius: 50%;
-    border-bottom: 30px ridge rgba(191,252,172,1);;
+    border-bottom: 30px ridge rgba(191,252,172,1);
     border-right: 30px ridge rgba(191,252,172,1);
 }
 
 .container__text::after {
-    /*position: relative;*/
     top: 100px;
     left: 100px;
     background: #0c2d4e;
