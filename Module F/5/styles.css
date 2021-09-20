@@ -1,0 +1,83 @@
+body, html {
+    width: 500px;
+    height: 100vh;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-gap: 3px;
+    margin-bottom: 3px;
+}
+
+.site-title {
+    background: rgb(255,213,49);
+    height: 40px;
+}
+
+.nav {
+    background: rgb(253,193,205);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 4fr 1.2fr;
+    grid-gap: 3px;
+}
+
+.main__div1, .main__div2 {
+    display: grid;
+    grid-gap: 3px;
+}
+
+.main__div1 {
+    grid-template-areas:
+        "post-title post-title"
+        "post-meta main-content"
+        "post-meta main-content-img";
+    grid-template-columns: 100px 3fr;
+    grid-template-rows: 1fr 3fr 3fr;
+}
+
+.post-title {
+    grid-area: post-title;
+    background: rgb(174,216,230);
+    height: 40px;
+}
+
+.post-meta {
+    grid-area: post-meta;
+    background: rgb(152,236,148);
+}
+
+.main-content {
+    grid-area: main-content;
+    background: rgb(211,211,211);
+}
+
+.main-content-img {
+    grid-area: main-content-img;
+    background: rgb(255,253,56);
+}
+
+.slide-bar {
+    background: rgb(254,169,76);
+}
+
+.ads {
+    background: rgb(28,125,18);
+}
+
+.other-stuffs {
+    background: rgb(220,80,249);
+}
+
+footer {
+    height: 40px;
+    margin-top: 3px;
+    background: rgb(162,135,128);
+}
