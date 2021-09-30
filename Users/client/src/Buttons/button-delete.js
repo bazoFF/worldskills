@@ -1,9 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function CreateBtnDelete() {
+function ButtonDelete({ onClick }) {
 
-    return <button className={"btn btn-danger"}>-</button>
+    return <button className={"btn btn-danger"} onClick={ onClick }>-</button>
 }
 
-export default CreateBtnDelete;
+export default ButtonDelete;
