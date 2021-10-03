@@ -1,0 +1,18 @@
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr th:last-child {
+    text-align: right;
+}
+
+.new-user {
+    padding: 5px;
+    border-top: 2px solid #262626;
+}
+input {
+    margin: 10px 0;
+    height: 30px;
+}
+
