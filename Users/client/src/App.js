@@ -24,11 +24,14 @@ function App() {
   }
 
   const updateUser = (id, nameVal, secondNameVal, emailVal) => {
-      let test = setUsers(users.filter((user) => user.id === 1));
-      console.log(test)
-      // test[0].name = nameVal;
-      // test[0].secondName = secondNameVal;
-      // test[0].email = emailVal;
+      // console.log(id)
+      users.forEach(user => {
+          if (user.id === id) {
+              deleteUser(id)
+              setUsers([{id: id, name: nameVal, secondName: secondNameVal, email: emailVal}, ...users])
+              // users.sort((a, b) => a.id > b.id ? 1 : -1)
+          }
+      })
   };
 
   return (

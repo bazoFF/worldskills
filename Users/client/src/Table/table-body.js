@@ -7,19 +7,19 @@ function TableBody ({users, onDeleteUser, showNewUser, hideNewUser, createNewUse
     const handle = <CreateUpdateUser  users = { users } hideNewUser = { hideNewUser } createUpdateUser = { createNewUser }
                                       updateUser = { updateUser } />
     const newUser = showNewUser ? handle : null;
-    const updateHandle = () => handle;
     return (
         <tbody>
             {
                 users?.map(user => {
                     const handle = () => onDeleteUser(user.id);
+                    const updateHandle = () => updateUser(user.id);
                     return (
                         <tr>
                             <th>{ user.id }</th>
                             <td>{ user.name }</td>
                             <td>{ user.secondName }</td>
                             <td>{ user.email }</td>
-                            <td><ButtonEdit onClick = { updateUser } /> <ButtonDelete onClick={ handle }/></td>
+                            <td><ButtonEdit onClick = { updateHandle } /> <ButtonDelete onClick={ handle }/></td>
                         </tr>
 
                     )

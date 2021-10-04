@@ -8,8 +8,6 @@ tr td:last-child{
     text-align: right;
 }
 
-
-
 .new-user {
     padding: 5px;
     border-top: 2px solid #262626;
@@ -17,5 +15,9 @@ tr td:last-child{
 input {
     margin: 10px 0;
     height: 30px;
+}
+
+td {
+    text-align: center;
 }
 
