@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ButtonEdit() {
-    return <div className={"btn"}><i className="bi bi-pencil-square" /></div>
+function ButtonEdit({ onClick }) {
+    return <div className={"btn"} onClick={ onClick } ><i className="bi bi-pencil-square" /></div>
 }
 
 export default ButtonEdit;

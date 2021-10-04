@@ -8,7 +8,7 @@ function App() {
     {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
     {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
     {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
-    {id: 3, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
+    {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
   ])
 
   const [stateNewUser, setToggleNewUser] = useState(false);
@@ -18,10 +18,18 @@ function App() {
   const showNewUser = () => setToggleNewUser(true);
   const hideNewUser = () => setToggleNewUser(false);
 
-  const addNewUser = (nameVal, secondNameVal, emailVal) => {
+  const createNewUser = (nameVal, secondNameVal, emailVal) => {
       hideNewUser();
-      // setUsers(users.push({id: users.length, name: nameVal, secondName: secondNameVal, email: emailVal}));
+      setUsers([...users, {id: users.length+1, name: nameVal, secondName: secondNameVal, email: emailVal}]);
   }
+
+  const updateUser = (id, nameVal, secondNameVal, emailVal) => {
+      let test = setUsers(users.filter((user) => user.id === 1));
+      console.log(test)
+      // test[0].name = nameVal;
+      // test[0].secondName = secondNameVal;
+      // test[0].email = emailVal;
+  };
 
   return (
     <div>
@@ -31,11 +39,13 @@ function App() {
               <th>#</th>
               <th>Имя</th>
               <th>Фамилия</th>
-              <th>Username</th>
+              <th>E-mail</th>
               <th><ButtonAdd onClick={ showNewUser } /></th>
             </tr>
         </thead>
-        <TableBody users={ users } onDeleteUser={ deleteUser } showNewUser={ stateNewUser } hideNewUser={ hideNewUser() } addNewUser = { addNewUser }/>
+        <TableBody users={ users } onDeleteUser={ deleteUser }
+                   showNewUser={ stateNewUser } hideNewUser={ hideNewUser }
+                   createNewUser = { createNewUser } updateUser={ updateUser } />
       </table>
     </div>
   )

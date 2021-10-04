@@ -3,9 +3,12 @@ th {
     vertical-align: middle;
 }
 
-tr th:last-child {
+tr th:last-child,
+tr td:last-child{
     text-align: right;
 }
+
+
 
 .new-user {
     padding: 5px;
