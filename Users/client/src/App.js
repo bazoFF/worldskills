@@ -3,59 +3,68 @@ import ButtonAdd from "./Buttons/button-add";
 import TableBody from "./Table/table-body";
 
 function App() {
+    const [users, setUsers] = useState([
+        {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
+        {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
+        {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
+        {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
+    ])
 
-  const [users, setUsers] = useState([
-    {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
-    {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
-    {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
-    {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
-  ])
+    const [showCreateUpdateUserState, setShowCreateUpdateUserState] = useState(false);
 
-  const [stateNewUser, setToggleNewUser] = useState(false);
+    const deleteUser = (id) => setUsers(users.filter((user) => user.id !== id));
 
-  const deleteUser = (id) => setUsers(users.filter(( user) => user.id !== id));
+    const showCreateUpdateUser = () => setShowCreateUpdateUserState(true);
+    const hideCreateUpdateUser = () => setShowCreateUpdateUserState(false);
 
-  const showNewUser = () => setToggleNewUser(true);
-  const hideNewUser = () => setToggleNewUser(false);
+    const createUpdateUser = (dto) => {
+        dto.id ? updateUser(dto) : createUser(dto);
+        hideCreateUpdateUser();
+    };
 
-  const createNewUser = (nameVal, secondNameVal, emailVal) => {
-      hideNewUser();
-      setUsers([...users, {id: users.length+1, name: nameVal, secondName: secondNameVal, email: emailVal}]);
-  }
+    const createUser = (dto) => {
+        setUsers([
+            ...users, {
+                id: users.length + 1,
+                name: dto.name,
+                secondName: dto.secondName,
+                email: dto.email
+            }]);
+    }
 
-  const updateUser = (id, nameVal, secondNameVal, emailVal) => {
-      // console.log(secondNameVal);
-      // let user = users.find(item => item.id === id);
-      const updatedUsers = users.map(user => {
-          if (user.id === id) {
-              user.name = nameVal;
-              user.secondName = secondNameVal;
-              user.email = emailVal;
-          }
-          return user;
-      });
-      setUsers(updatedUsers);
-  };
+    const updateUser = (dto) => {
+        const updatedUsers = users.map(user => {
+            if (user.id === dto.id) {
+                user.name = dto.name;
+                user.secondName = dto.secondName;
+                user.email = dto.email;
+            }
+            return user;
+        });
+        setUsers(updatedUsers);
+    };
 
-  return (
-    <div>
-      <table className="table" id={ 'table' }>
-        <thead>
-            <tr>
-              <th>#</th>
-              <th>Имя</th>
-              <th>Фамилия</th>
-              <th>E-mail</th>
-              <th><ButtonAdd onClick={ showNewUser } /></th>
-            </tr>
-        </thead>
-        <TableBody users={ users } onDeleteUser={ deleteUser }
-                   showNewUser={ stateNewUser } hideNewUser={ hideNewUser }
-                   createNewUser = { createNewUser } updateUser={ updateUser } />
-      </table>
-    </div>
-  )
-
+    return (
+        <div>
+            <table className="table" id={'table'}>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>E-mail</th>
+                    <th><ButtonAdd onClick={showCreateUpdateUser}/></th>
+                </tr>
+                </thead>
+                <TableBody users={users}
+                           onDeleteUser={deleteUser}
+                           showCreateUpdateUserState={showCreateUpdateUserState}
+                           showCreateUpdateUser={showCreateUpdateUser}
+                           hideCreateUpdateUser={hideCreateUpdateUser}
+                           createUpdateUser={createUpdateUser}/>
+            </table>
+        </div>
+    )
 }
 
 export default App;
