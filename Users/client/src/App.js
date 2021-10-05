@@ -24,14 +24,17 @@ function App() {
   }
 
   const updateUser = (id, nameVal, secondNameVal, emailVal) => {
-      // console.log(id)
-      users.forEach(user => {
+      // console.log(secondNameVal);
+      // let user = users.find(item => item.id === id);
+      const updatedUsers = users.map(user => {
           if (user.id === id) {
-              deleteUser(id)
-              setUsers([{id: id, name: nameVal, secondName: secondNameVal, email: emailVal}, ...users])
-              // users.sort((a, b) => a.id > b.id ? 1 : -1)
+              user.name = nameVal;
+              user.secondName = secondNameVal;
+              user.email = emailVal;
           }
-      })
+          return user;
+      });
+      setUsers(updatedUsers);
   };
 
   return (

@@ -13,7 +13,7 @@ function CreateUpdateUser({hideNewUser, createUpdateUser, users, updateUser} ) {
     const updateEmailVal = (e) => setEmailVal(e.target.value);
 
     const handleAddNewUser = () => {
-        if (nameVal.length > 0 || secondNameVal > 0 || secondNameVal > 0) {
+        if (nameVal.length > 0 || secondNameVal.length > 0 || emailVal.length > 0) {
             createUpdateUser(nameVal, secondNameVal, emailVal);
         } else {
             alert('Неправильный ввод данных')
@@ -21,9 +21,9 @@ function CreateUpdateUser({hideNewUser, createUpdateUser, users, updateUser} ) {
     }
     return <tr className={'new-user'}>
             <th></th>
-            <td><input type="text" value={ users.name } onChange={ updateNameVal } placeholder={"Введите имя"}/></td>
-            <td><input type="text" value={ users.secondName } onChange={ updateSecondNameVal } placeholder={"Введите фамилию"}/></td>
-            <td><input type="text" value={ users.email } onChange={ updateEmailVal } placeholder={"Введите email"}/></td>
+            <td><input type="text" onChange={ updateNameVal } placeholder={"Введите имя"}/></td>
+            <td><input type="text" onChange={ updateSecondNameVal } placeholder={"Введите фамилию"}/></td>
+            <td><input type="text" onChange={ updateEmailVal } placeholder={"Введите email"}/></td>
             <td><ButtonAgree onClick={ handleAddNewUser } /> <ButtonClose onClick = { hideNewUser } /></td>
         </tr>
 }
