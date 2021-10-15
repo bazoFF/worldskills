@@ -5,30 +5,30 @@ import ButtonClose from "../Buttons/button-close";
 
 function CreateUpdateUser({hideCreateUpdateUser, createUpdateUser, userForUpdate} ) {
     let [nameVal, setNameVal] = useState('');
-    let [secondNameVal, setSecondNameVal] = useState('');
+    let [lastNameVal, setlastNameVal] = useState('');
     let [emailVal, setEmailVal] = useState('');
 
     const updateNameVal = (e) => setNameVal(e.target.value);
-    const updateSecondNameVal = (e) => setSecondNameVal(e.target.value);
+    const updatelastNameVal = (e) => setlastNameVal(e.target.value);
     const updateEmailVal = (e) => setEmailVal(e.target.value);
 
     // const handle = (e) => updateEmailVal(e)
 
     // if (userForUpdate) {
-    //     nameVal = userForUpdate.name;
-    //     secondNameVal = userForUpdate.secondName;
+    //     nameVal = userForUpdate.firstName;
+    //     lastNameVal = userForUpdate.lastName;
     //     emailVal = userForUpdate.email;
     // }
 
     const createUpdateUserHandle = () => {
-        if (!nameVal || !secondNameVal || !emailVal) {
+        if (!nameVal || !lastNameVal || !emailVal) {
             alert('Неправильный ввод данных');
             return;
         }
 
         const dto = {
-            name: nameVal,
-            secondName: secondNameVal,
+            firstName: nameVal,
+            lastName: lastNameVal,
             email: emailVal,
         };
 
@@ -42,7 +42,7 @@ function CreateUpdateUser({hideCreateUpdateUser, createUpdateUser, userForUpdate
     return <tr className={'new-user'}>
             <th>{userForUpdate ? userForUpdate.id : null}</th>
             <td><input type="text" value={nameVal} onChange={ updateNameVal } placeholder={"Введите имя"}/></td>
-            <td><input type="text" value={secondNameVal} onChange={ updateSecondNameVal } placeholder={"Введите фамилию"}/></td>
+            <td><input type="text" value={lastNameVal} onChange={ updatelastNameVal } placeholder={"Введите фамилию"}/></td>
             <td><input type="text" value={emailVal} onChange={ updateEmailVal } placeholder={"Введите email"}/></td>
             <td><ButtonAgree onClick={ createUpdateUserHandle } /> <ButtonClose onClick = { hideCreateUpdateUser } /></td>
         </tr>

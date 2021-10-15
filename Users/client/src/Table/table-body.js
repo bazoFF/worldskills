@@ -31,8 +31,8 @@ function TableBody({
                 return (
                     <tr>
                         <th>{user.id}</th>
-                        <td>{user.name}</td>
-                        <td>{user.secondName}</td>
+                        <td>{user.firstName}</td>
+                        <td>{user.lastName}</td>
                         <td>{user.email}</td>
                         <td><ButtonEdit onClick={showUpdateUser}/> <ButtonDelete onClick={handle}/></td>
                     </tr>

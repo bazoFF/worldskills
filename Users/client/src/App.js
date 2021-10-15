@@ -6,10 +6,10 @@ function App() {
     const [users, setUsers] = useState([]);
 
     // let test = [
-    //     {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
-    //     {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
-    //     {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
-    //     {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
+    //     {id: 1, firstName: 'Misha', lastName: 'Cool', email: '4@'},
+    //     {id: 2, firstName: 'Liza', lastName: 'Kim', email: '5@'},
+    //     {id: 3, firstName: 'Masha', lastName: 'Min', email: '6@'},
+    //     {id: 4, firstName: 'Mashaaaa', lastName: 'Min', email: '6@'},
     // ];
 
     console.log(1);
@@ -40,9 +40,9 @@ function App() {
     const createUser = (dto) => {
         setUsers([
             ...users, {
-                id: users.length + 1,
-                name: dto.name,
-                secondName: dto.secondName,
+                id: dto.id,
+                firstName: dto.firstName,
+                lastName: dto.lastName,
                 email: dto.email
             }]);
     }
@@ -50,8 +50,8 @@ function App() {
     const updateUser = (dto) => {
         const updatedUsers = users.map(user => {
             if (user.id === dto.id) {
-                user.name = dto.name;
-                user.secondName = dto.secondName;
+                user.firstName = dto.firstName;
+                user.lastName = dto.lastName;
                 user.email = dto.email;
             }
             return user;
