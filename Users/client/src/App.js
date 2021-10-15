@@ -3,24 +3,27 @@ import ButtonAdd from "./Buttons/button-add";
 import TableBody from "./Table/table-body";
 
 function App() {
-    let test = [
-        {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
-        {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
-        {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
-        {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
-    ]
-    const URL = "http://newbase/api/users"
+    const [users, setUsers] = useState([]);
 
-    setTimeout(() => {
-        fetch(URL).then((require) => {
-            console.log(require.json())
-            // return require.text()
-        })
-    }, 2000)
+    // let test = [
+    //     {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
+    //     {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
+    //     {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
+    //     {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
+    // ];
 
-
-    const [users, setUsers] = useState(test)
-
+    console.log(1);
+    useEffect(() => {
+        console.log('useEffect');
+        fetch('http://newbase/api/users')
+            .then(async (response) => {
+                console.log(2);
+                setUsers(await response.json());
+                console.log(3);
+            });
+        console.log(4);
+    }, []);
+    console.log(5); // 1 - 5 - useEffect - 4 - 2 - 1 - 5 - 3
 
     const [showCreateUpdateUserState, setShowCreateUpdateUserState] = useState(false);
 
@@ -55,10 +58,6 @@ function App() {
         });
         setUsers(updatedUsers);
     };
-
-    useEffect(() => {
-
-    })
 
     return (
         <div>
