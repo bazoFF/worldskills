@@ -1,14 +1,26 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ButtonAdd from "./Buttons/button-add";
 import TableBody from "./Table/table-body";
 
 function App() {
-    const [users, setUsers] = useState([
+    let test = [
         {id: 1, name: 'Misha', secondName: 'Cool', email: '4@'},
         {id: 2, name: 'Liza', secondName: 'Kim', email: '5@'},
         {id: 3, name: 'Masha', secondName: 'Min', email: '6@'},
         {id: 4, name: 'Mashaaaa', secondName: 'Min', email: '6@'},
-    ])
+    ]
+    const URL = "http://newbase/api/users"
+
+    setTimeout(() => {
+        fetch(URL).then((require) => {
+            console.log(require.json())
+            // return require.text()
+        })
+    }, 2000)
+
+
+    const [users, setUsers] = useState(test)
+
 
     const [showCreateUpdateUserState, setShowCreateUpdateUserState] = useState(false);
 
@@ -43,6 +55,10 @@ function App() {
         });
         setUsers(updatedUsers);
     };
+
+    useEffect(() => {
+
+    })
 
     return (
         <div>

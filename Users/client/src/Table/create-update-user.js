@@ -8,15 +8,17 @@ function CreateUpdateUser({hideCreateUpdateUser, createUpdateUser, userForUpdate
     let [secondNameVal, setSecondNameVal] = useState('');
     let [emailVal, setEmailVal] = useState('');
 
-    // if (userForUpdate) {
-    //     setNameVal(userForUpdate.name);
-    //     setSecondNameVal(userForUpdate.secondName);
-    //     setEmailVal(userForUpdate.email);
-    // }
-
     const updateNameVal = (e) => setNameVal(e.target.value);
     const updateSecondNameVal = (e) => setSecondNameVal(e.target.value);
     const updateEmailVal = (e) => setEmailVal(e.target.value);
+
+    // const handle = (e) => updateEmailVal(e)
+
+    // if (userForUpdate) {
+    //     nameVal = userForUpdate.name;
+    //     secondNameVal = userForUpdate.secondName;
+    //     emailVal = userForUpdate.email;
+    // }
 
     const createUpdateUserHandle = () => {
         if (!nameVal || !secondNameVal || !emailVal) {
