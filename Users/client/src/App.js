@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import ButtonAdd from "./Buttons/button-add";
 import TableBody from "./Table/table-body";
+import data from "bootstrap/js/src/dom/data";
 
 function App() {
-    const [users, setUsers] = useState([]);
 
+    const [users, setUsers] = useState([]);
     // let test = [
     //     {id: 1, firstName: 'Misha', lastName: 'Cool', email: '4@'},
     //     {id: 2, firstName: 'Liza', lastName: 'Kim', email: '5@'},
@@ -12,22 +13,37 @@ function App() {
     //     {id: 4, firstName: 'Mashaaaa', lastName: 'Min', email: '6@'},
     // ];
 
-    console.log(1);
-    useEffect(() => {
-        console.log('useEffect');
+    const updateList = () => {
         fetch('http://newbase/api/users')
             .then(async (response) => {
-                console.log(2);
+                // console.log(2);
                 setUsers(await response.json());
-                console.log(3);
+                // console.log(3);
             });
-        console.log(4);
+    }
+
+
+    // console.log(1);
+    useEffect(() => {
+        updateList()
+        // console.log('useEffect');
+        // fetch('http://newbase/api/users')
+        //     .then(async (response) => {
+        //         console.log(2);
+        //         setUsers(await response.json());
+        //         console.log(3);
+        //     });
+        // console.log(4);
     }, []);
-    console.log(5); // 1 - 5 - useEffect - 4 - 2 - 1 - 5 - 3
+    // console.log(5); // 1 - 5 - useEffect - 4 - 2 - 1 - 5 - 3
 
     const [showCreateUpdateUserState, setShowCreateUpdateUserState] = useState(false);
 
-    const deleteUser = (id) => setUsers(users.filter((user) => user.id !== id));
+    const deleteUser = (id) => {
+        fetch(`http://newbase/api/users/${id}`, {
+            method: 'DELETE',
+        }).then(() => updateList())
+    };
 
     const showCreateUpdateUser = () => setShowCreateUpdateUserState(true);
     const hideCreateUpdateUser = () => setShowCreateUpdateUserState(false);
@@ -38,25 +54,35 @@ function App() {
     };
 
     const createUser = (dto) => {
-        setUsers([
-            ...users, {
+            fetch('http://newbase/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    id: dto.id,
+                    firstName: dto.firstName,
+                    lastName: dto.lastName,
+                    email: dto.email
+                })
+            })
+                .catch((err) => err)
+                .then(() => updateList())
+    }
+
+    const updateUser = (dto) => {
+        fetch(`http://newbase/api/users/${dto.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify ( {
                 id: dto.id,
                 firstName: dto.firstName,
                 lastName: dto.lastName,
                 email: dto.email
-            }]);
-    }
-
-    const updateUser = (dto) => {
-        const updatedUsers = users.map(user => {
-            if (user.id === dto.id) {
-                user.firstName = dto.firstName;
-                user.lastName = dto.lastName;
-                user.email = dto.email;
-            }
-            return user;
-        });
-        setUsers(updatedUsers);
+            })
+        }).then(() => updateList())
     };
 
     return (
